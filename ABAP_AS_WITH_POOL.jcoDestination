@@ -1,0 +1,10 @@
+#for tests only !
+#Fri Jul 06 19:23:04 CST 2018
+jco.client.lang=en
+jco.destination.peak_limit=10
+jco.client.client=801
+jco.client.passwd=yhpwd
+jco.client.user=SFC_USER
+jco.client.sysnr=02
+jco.destination.pool_capacity=3
+jco.client.ashost=10.134.28.85
