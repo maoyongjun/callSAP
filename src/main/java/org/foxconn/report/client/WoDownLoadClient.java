@@ -1,6 +1,7 @@
 package org.foxconn.report.client;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.beanutils.BeanUtils;
@@ -24,23 +25,31 @@ public class WoDownLoadClient extends SAPBaseClient {
 	// PLANT:=strPlant, _
 	// PO_NO:=pParam1, _
 	// PO:=objData)
-	public static void downloadWO() throws JCoException {
-
-		JCoDestination destination = JCoDestinationManager.getDestination(ABAP_AS_POOLED);
-		JCoFunction function = destination.getRepository().getFunction("ZRFC_GET_PRO_HEADER8");
+	
+	public static Map<String,Object> downloadWO(String plant,String wo){
+		
+		JCoDestination destination = null;
+		JCoFunction function = null;
+		try {
+			destination = JCoDestinationManager.getDestination(ABAP_AS_POOLED);
+			function = destination.getRepository().getFunction("ZRFC_GET_PRO_HEADER8");
+		} catch (JCoException e1) {
+			e1.printStackTrace();
+		}
 
 		if (function == null)
 			throw new RuntimeException("ZRFC_GET_PRO_HEADER8 not found in SAP.");
 
 		try {
 			JCoParameterList jCoParameterList = function.getImportParameterList();
-			jCoParameterList.setValue("PO_NO", "000650072756");
-			jCoParameterList.setValue("PLANT", "GHUE");
+			jCoParameterList.setValue("PO_NO", wo);
+			jCoParameterList.setValue("PLANT", plant);
 			function.execute(destination);
 
 		} catch (AbapException e) {
 			System.out.println(e.toString());
-			return;
+		} catch (JCoException e) {
+			e.printStackTrace();
 		}
 		JCoParameterList jCoParameterList = function.getTableParameterList();
 		JCoTable table = jCoParameterList.getTable("PO");
@@ -58,14 +67,19 @@ public class WoDownLoadClient extends SAPBaseClient {
 //			e.printStackTrace();
 //		}
 //		System.out.println(map);
-		
+		Map<String, Object> result= new HashMap<String, Object>();
 		//方案二，直接转化为实体
 		try {
-			System.out.println(XmlUtil.dom2Map(xmlStr));//xml转化为map
+			result=XmlUtil.dom2Map(xmlStr);
+			System.out.println(result);//xml转化为map
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		}
-
+		return result;
+	}
+	
+	public static void downloadWO() throws JCoException {
+		 downloadWO("GHUE","000650072756");
 	}
 	
 //	 bResult = ObjSapFunction.ZRFC_GET_PRO_DETAIL(varException2, _

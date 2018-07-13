@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="org.foxconn.dao.DownWoDao">
+	<select id="insertWoHeader" parameterType="map" statementType="CALLABLE">
+ 		<![CDATA[
+		    {call SP_SAP_DL_WO_MASTER
+		     (#{op_id,mode=IN,jdbcType=VARCHAR},
+			 #{AUFNR ,mode=IN,jdbcType=VARCHAR},
+			 #{WERKS ,mode=IN,jdbcType=VARCHAR},
+			 #{AUART ,mode=IN,jdbcType=VARCHAR},
+			 #{MATNR ,mode=IN,jdbcType=VARCHAR},
+			 #{REVLV ,mode=IN,jdbcType=VARCHAR},
+			 #{KDAUF ,mode=IN,jdbcType=VARCHAR},
+			 #{GSTRS ,mode=IN,jdbcType=VARCHAR},
+			 #{DISPO ,mode=IN,jdbcType=VARCHAR},
+			 #{GAMNG ,mode=IN,jdbcType=VARCHAR},
+			 #{VERID ,mode=IN,jdbcType=VARCHAR},
+			 #{ARBPL ,mode=IN,jdbcType=VARCHAR},
+			 #{KUNNR ,mode=IN,jdbcType=VARCHAR},
+			 #{KDMAT ,mode=IN,jdbcType=VARCHAR},
+			 #{AEDAT ,mode=IN,jdbcType=VARCHAR},
+			 #{AENAM ,mode=IN,jdbcType=VARCHAR},
+			 #{MATKL ,mode=IN,jdbcType=VARCHAR},
+			 #{MAKTX ,mode=IN,jdbcType=VARCHAR},
+			 #{GMEIN ,mode=IN,jdbcType=VARCHAR},
+			 #{STATUS ,mode=IN,jdbcType=VARCHAR},
+			 #{ERDAT ,mode=IN,jdbcType=VARCHAR},
+			 #{ERFZEIT,mode=IN,jdbcType=VARCHAR},
+			 #{AEZEIT,mode=IN,jdbcType=VARCHAR},
+			 #{GSUZS,mode= IN,jdbcType=VARCHAR},
+			 #{RSNUM,mode= IN,jdbcType=VARCHAR},
+			 #{KBEASOLL,mode=IN,jdbcType=VARCHAR},
+			 #{TASKGROUP,mode=IN,jdbcType=VARCHAR},
+			 #{CY_SEQNR,mode=IN,jdbcType=VARCHAR},
+			 #{ZAPLFL,mode=IN,jdbcType=VARCHAR},
+			 #{ZVORNR,mode=IN,jdbcType=VARCHAR},
+			 #{ZTDLINE,mode=IN,jdbcType=VARCHAR},
+			 #{KDPOS,mode=IN,jdbcType=VARCHAR},
+			 #{BSTKD,mode=IN,jdbcType=VARCHAR},
+			 #{POSEX_E,mode=IN,jdbcType=VARCHAR},
+			 #{TKNUM,mode= IN,jdbcType=VARCHAR},
+			 #{APRIO,mode= IN,jdbcType=VARCHAR},
+			 #{MAUFNR,mode=IN,jdbcType=VARCHAR},
+			 #{OBJNR,mode= IN,jdbcType=VARCHAR},
+			 #{FEVOR,mode= IN,jdbcType=VARCHAR},
+			 #{WEMNG,mode= IN,jdbcType=VARCHAR},
+			 #{ERNAM,mode= IN,jdbcType=VARCHAR},
+			 #{IDAT2,mode= IN,jdbcType=VARCHAR},
+			 #{PHAS2,mode= IN,jdbcType=VARCHAR},
+			 #{STLAL,mode= IN,jdbcType=VARCHAR},
+			 #{STLAN,mode= IN,jdbcType=VARCHAR},
+			 #{VDATU,mode= IN,jdbcType=VARCHAR},
+			 #{VGW03,mode= IN,jdbcType=VARCHAR},
+			 #{o_error_detail,mode= OUT,jdbcType=VARCHAR}
+					      
+		
+		     )
+		     }
+		]]>
+	</select>
+
+	<select id="insertWoDetail" parameterType="map" statementType="CALLABLE">
+ 		<![CDATA[
+		    {call sp_sap_dl_wo_detail(#{op_id,mode=IN,jdbcType=VARCHAR},
+                                                    #{AUFNR,mode=IN,jdbcType=VARCHAR},
+                                                    #{POSNR,mode=IN,jdbcType=VARCHAR},
+                                                    #{WERKS,mode=IN,jdbcType=VARCHAR},
+                                                    #{MATNR,mode=IN,jdbcType=VARCHAR},
+                                                    #{BDMNG,mode=IN,jdbcType=VARCHAR},
+                                                    #{ENMNG,mode=IN,jdbcType=VARCHAR},
+                                                    #{KDMAT,mode=IN,jdbcType=VARCHAR},
+                                                    #{MEINS,mode=IN,jdbcType=VARCHAR},
+                                                    #{MATKL,mode=IN,jdbcType=VARCHAR},
+                                                    #{ALPGR,mode=IN,jdbcType=VARCHAR},
+                                                    #{MAKTX,mode=IN,jdbcType=VARCHAR},
+                                                    #{DUMPS,mode=IN,jdbcType=VARCHAR},
+                                                    #{SOBSL,mode=IN,jdbcType=VARCHAR},
+                                                    #{REVLV,mode=IN,jdbcType=VARCHAR},
+                                                    #{SHKZG,mode=IN,jdbcType=VARCHAR},
+                                                    #{LGORT,mode=IN,jdbcType=VARCHAR},
+                                                    #{QUANTITY,mode=IN,jdbcType=VARCHAR},
+                                                    #{BAUGR,mode=IN,jdbcType=VARCHAR},
+                                                    #{MENGE,mode=IN,jdbcType=VARCHAR},
+                                                    #{CHARG,mode=IN,jdbcType=VARCHAR},
+                                                    #{MOD_NO,mode=IN,jdbcType=VARCHAR},
+                                                    #{POSTP,mode=IN,jdbcType=VARCHAR},
+                                                    #{SORTF,mode=IN,jdbcType=VARCHAR},
+                                                    #{LIFNR,mode=IN,jdbcType=VARCHAR},
+                                                    #{POTX1,mode=IN,jdbcType=VARCHAR},
+                                                    #{POTX2,mode=IN,jdbcType=VARCHAR},
+                                                    #{o_error_detail,mode=OUT,jdbcType=VARCHAR}
+                                                    
+                                                    )
+		     }
+		]]>
+	</select>
+</mapper>        
+ 
